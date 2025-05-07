@@ -5,32 +5,35 @@ class ClinicSystem():
 
         #method to register a patient
     def register_patient(self):
-        name = input("Enter the patient's name: ")
-        age = int (input("Enter the patient's age: "))
-        gender = input("Enter the patient's gender: ")
-        contact = input("Enter the patient's contact number: ")
+        try:
+            name = input("Enter the patient's name: ")
+            age = int (input("Enter the patient's age: "))
+            gender = input("Enter the patient's gender: ")
+            contact = input("Enter the patient's contact number: ")
 
-        if name == "" or age == "" or gender == "" or contact == "":
-            print("Please fill in all the fields.")
-            return
-        patient_id = len(self.patients) + 1
+            if name == "" or age == "" or gender == "" or contact == "":
+                print("Please fill in all the fields.")
+                return
+            patient_id = len(self.patients) + 1
 
-        patient = {
-            "patient_id": patient_id,
-            "name": name,
-            "age": age,
-            "gender": gender,
-            "contact": contact
-        }
+            patient = {
+                "patient_id": patient_id,
+                "name": name,
+                "age": age,
+                "gender": gender,
+                "contact": contact
+            }
 
-        self.patients.append(patient)
-        print(f"Patient {name} registered successfully with ID {patient_id}.\n")
+            self.patients.append(patient)
+            print(f"\nPatient {name} registered successfully with ID {patient_id}.\n")
+        except ValueError:
+            print("\nInvalid input. Please enter a valid age.\n")
 
     #method to view patients and their details
     def view_patients(self):
         
         if len(self.patients) == 0:
-            print("⚠️ No patients registered.")
+            print("\n⚠️ No patients registered.\n")
             return
         
         print("📋Registered Patients:\n")
@@ -45,14 +48,14 @@ class ClinicSystem():
     #method to schedule_appointment
     def schedule_appointment(self):
         if len(self.patients) == 0:
-            print("⚠️ No patients registered. Please first register a patient.\n")
+            print("\n⚠️ No patients registered. Please first register a patient.\n")
             return
-        view_patients()
+        self.view_patients()
 
         try:
             patient_id = int(input("Enter the patient ID: "))
 
-            for patient in self.patient:
+            for patient in self.patients:
                 if patient["patient_id"] == patient_id:
                     date = input("Enter the appointment date (YYYY-MM-DD): ")
                     time = input("Enter the appointment time (HH:MM): ")
@@ -65,19 +68,19 @@ class ClinicSystem():
                         "time":time
                     }
                     self.appointments.append(appointment)
-                    print(f"Appointment scheduled successfully for patient {patient['name']} on {date} at {time} with doctor {doctor}.\n")
+                    print(f"\nAppointment scheduled successfully for patient {patient['name']} on {date} at {time} with doctor {doctor}.\n")
                     return
-            print("⚠️ Invalid patient ID. Please enter a valid patient ID.\n")
+            print("\n⚠️ Invalid patient ID. Please enter a valid patient ID.\n")
         except ValueError:
-            print("⚠️ Invalid input. Please enter a valid patient ID.\n")
+            print("\n⚠️ Invalid input. Please enter a valid patient ID.\n")
 
     #method to view appointments
     def view_appointments(self):
         if len(self.appointments) == 0:
-            print("⚠️ No appointments scheduled.")
+            print("\n⚠️ No appointments scheduled.\n")
             return
 
-        print("📋Scheduled Appointments:\n")
+        print("\n📋Scheduled Appointments:\n")
 
         for appointment in self.appointments:
             patient_id = appointment["patient_id"]
@@ -104,7 +107,7 @@ class ClinicSystem():
             print("5. Exit")
 
             try:
-                choice = input("Enter your choice (1-5): \n")
+                choice = input("\nEnter your choice (1-5): \n")
 
                 if choice == "1":
                     self.register_patient()

@@ -60,7 +60,6 @@ This makes the system easier to navigate, debug, and extend.
 * **Dependency Inversion Principle (DIP)**
   The system depends on abstractions (`StorageInterface`) rather than concrete implementations. This makes it easy to switch from JSON storage to a database later.
 
----
 
 ### 🔹 3. Input Validation & Error Handling
 
@@ -73,7 +72,6 @@ The system now actively prevents invalid data:
 
 This makes the system more user-friendly and robust.
 
----
 
 ### 🔹 4. Persistent Data Storage (JSON)
 
@@ -95,12 +93,4 @@ This ensures data is saved and available even after the program is restarted.
 * ✔ Better user experience through validation
 * ✔ Follows industry-relevant software development practices
 
----
 
-
-
----
-
-## 👩‍💻 Author
-
-Developed as part of Software Construction coursework.

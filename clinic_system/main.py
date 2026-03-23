@@ -81,11 +81,12 @@ class ClinicApp:
 
             elif choice == "2":
                 print(self.patient_service.get_all())
+                input("\nPress Enter to continue...")
 
             elif choice == "3" and self.current_user["role"] == "doctor":
                 patient_id = int(input("Patient ID: "))
                 doctor = input("Doctor: ")
-                date = input("Date: ")
+                date = input("Date (dd/mm/yy): ")
                 time = input("Time: ")
                 self.appointment_service.schedule(patient_id, doctor, date, time)
 
